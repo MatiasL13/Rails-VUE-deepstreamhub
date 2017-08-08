@@ -1,0 +1,28 @@
+<!-- this example requires a modern browser that supports ES2015 natively -->
+
+<div id="app">
+  <div class="group connectionState">
+    Connection-State is: <em id="connection-state">{{connectionState}}</em>
+  </div>
+  <my-orders :ds="ds"></my-orders>
+</div>
+
+
+<template id="orders-template">
+  <div class="group pubsub">
+    <div class="half left">
+      <h2>Haga su pedido </h2>
+      <button class="half left" id="send-order" @click="handleClick()">Enviar pedido</button>
+      <input type="text" class="half" id="order-data" v-model="pedido"/>
+      <input type="text" class="half" id="order-data" v-model="persona"/>
+    </div>
+    <div class="half">
+      <h2>Pedidos</h2>
+      <ul id="orders-received">
+        <template v-for="orde in ordersReceived"  :order="order">
+          <li>{{orde.pedido}}  -  {{orde.persona}} <button @click="deleteOrder(orde)" style="color:red">Borrar</button> </li>
+        </template>
+      </ul>
+    </div>
+  </div>
+</template>
